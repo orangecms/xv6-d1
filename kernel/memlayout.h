@@ -4,7 +4,7 @@
 //
 // 14000000 -- CLINT
 // 10000000 -- PLIC
-// 02500000 -- uart0 
+// 02500000 -- uart0
 // RAM starts at 40000000.
 
 // the kernel uses physical memory thus:
@@ -37,8 +37,8 @@
 // for use by the kernel and user pages
 // from physical address 0x80000000 to PHYSTOP.
 // currently uses 128 MB only
-#define KERNBASE 0x40000000L
-#define PHYSTOP (KERNBASE + 128*1024*1024)
+#define KERNBASE 0x40100000L
+#define PHYSTOP (KERNBASE + 127*1024*1024)
 
 // map the trampoline page to the highest address,
 // in both user and kernel space.
