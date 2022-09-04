@@ -7,7 +7,7 @@ SECTIONS
    * ensure that entry.S / _entry is at 0x80000000,
    * where qemu's -kernel jumps.
    */
-  . = 0x40100000;
+  . = 0x40200000;
 
   .text : {
     *(.text .text.*)
