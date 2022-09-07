@@ -29,13 +29,11 @@ start()
 
   // set M Previous Privilege mode to Supervisor, for mret.
   unsigned long x = r_mstatus();
+  printf("mstatus %x\n", x);
   x &= ~MSTATUS_MPP_MASK;
   x |= MSTATUS_MPP_S;
   w_mstatus(x);
-
-  // set M Exception Program Counter to main, for mret.
-  // requires gcc -mcmodel=medany
-  w_mepc((uint64)main);
+  printf("mstatus %x\n", r_mstatus());
 
   // disable paging for now.
   w_satp(0);
@@ -47,6 +45,11 @@ start()
 
   // switch to supervisor mode and jump to main().
   pmpinit();
+  //intr_on();
+
+  // set M Exception Program Counter to main, for mret.
+  // requires gcc -mcmodel=medany
+  w_mepc((uint64)main);
 
   // ask for clock interrupts.
   timerinit();
@@ -102,4 +105,3 @@ void pmpinit()
   w_pmpaddr0(0xffffffffULL);
   w_pmpcfg0(0x0FULL); // PMP_R | PMP_W | PMP_X | PMP_MATCH_TOR);
 }
-

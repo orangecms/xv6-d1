@@ -18,7 +18,7 @@ plicinit(void)
 void
 plicinithart(void)
 {
-  // set uart's enable bit for this hart's S-mode. 
+  // set uart's enable bit for this hart's S-mode.
   *(uint32*)PLIC_SENABLE = (1 << UART0_IRQ);
   *(uint32*)(PLIC_PRIORITY + (UART0_IRQ * 4)) = 0x1f;
 
